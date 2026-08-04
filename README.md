@@ -2,6 +2,10 @@
 
 Firefox extension to extract clean article/blog text from any webpage and copy it as markdown to your clipboard. Perfect for pasting into Claude, ChatGPT, or any AI tool.
 
+## Quick Start
+
+[📥 **Download v1.1.1**](https://github.com/minoshw/textgrab/archive/refs/tags/v1.1.1.zip) • [📖 Installation Guide](#installation)
+
 ## Features
 
 - **Extract Article Text** — Intelligently extracts main article content from webpages
