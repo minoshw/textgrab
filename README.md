@@ -2,6 +2,10 @@
 
 Firefox extension to extract clean article/blog text from any webpage and copy it as markdown to your clipboard. Perfect for pasting into Claude, ChatGPT, or any AI tool.
 
+## Quick Start
+
+[🚀 **Install on Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/textgrab/) • [📥 Download ZIP](https://github.com/minoshw/textgrab/archive/refs/tags/v1.1.2.zip)
+
 ## Features
 
 - **Extract Article Text** — Intelligently extracts main article content from webpages
@@ -25,31 +29,20 @@ Firefox extension to extract clean article/blog text from any webpage and copy i
 
 ## Installation
 
-### Option 1: Temporary Load (Development)
-[📥 Download v1.1.1](https://github.com/minoshw/textgrab/archive/refs/tags/v1.1.1.zip)
+### Option 1: Firefox Add-ons Store (Recommended)
+[Install TextGrab on Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/textgrab/)
+
+1. Click the link above
+2. Click **Add to Firefox**
+3. Automatic updates included
+
+### Option 2: Manual Load (Development)
+[📥 Download v1.1.2](https://github.com/minoshw/textgrab/archive/refs/tags/v1.1.2.zip)
 
 1. Download and extract the ZIP file
 2. Open `about:debugging` in Firefox
 3. Click **This Firefox** → **Load Temporary Add-on**
 4. Select `manifest.json` from the extracted folder
-
-### Option 2: Mozilla-Signed & Self-Hosted (Recommended)
-Get Mozilla's signature and distribute yourself:
-
-1. Go to [addons.mozilla.org/submit](https://addons.mozilla.org/en-US/developers/addon/submit/distribution)
-2. Log in or create an account
-3. Upload this repository or `.zip` file
-4. Fill in store metadata (description, screenshots, etc.)
-5. Submit for review (unlisted)
-6. Mozilla signs the `.xpi` file
-7. Download the signed `.xpi` from Developer Hub
-8. Host it on your own server/GitHub
-9. Firefox automatically checks `update_url` for updates
-
-**Update URL Setup:**
-- Edit `manifest.json` and add your update URL
-- Firefox checks this URL for new versions
-- Serve an XML update manifest with signed `.xpi` links
 
 ## Usage
 
@@ -65,7 +58,7 @@ Get Mozilla's signature and distribute yourself:
 - **Security:** Content Security Policy enabled (script-src 'self')
 - **No Permissions Collected:** Zero telemetry
 - **Icon Sizes:** 32px and 64px (Firefox standard)
-- **Version:** 1.1.1
+- **Version:** 1.1.2
 
 ## How It Works
 
