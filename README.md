@@ -15,6 +15,10 @@ Firefox extension to extract clean article/blog text from any webpage and copy i
 - **Instant Feedback** — Shows "✓ Copied to clipboard" when successful
 - **No Data Collection** — Everything runs locally in your browser. No tracking, no accounts, no servers.
 
+## Privacy
+
+TextGrab only accesses the page when you use it. It uses Firefox's **activeTab** permission — no broad "access all websites" host access. The extension reads the current tab's content only when you deliberately click the toolbar button or context menu. Everything stays local in your browser; nothing is ever sent to a server.
+
 ## Supported Markdown Elements
 
 - Headings (h1-h6)
