@@ -221,9 +221,7 @@ async function writeToClipboard(text) {
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
-    if (message.type === "ping") {
-      sendResponse({ ok: true });
-    } else if (message.type === "copy-article") {
+    if (message.type === "copy-article") {
       const { text, usedFallback } = extractArticle();
       const copied = await writeToClipboard(text);
       sendResponse({ ok: copied, text, usedFallback, noArticle: !text || text.trim().length === 0 });

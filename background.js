@@ -43,9 +43,17 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
+// Verify the message came from one of our own pages (popup or content script),
+// not another extension or an external web page.
+function isTrustedSender(sender) {
+  return sender && sender.id === browser.runtime.id;
+}
+
 // Popup requests run the extraction in the active tab, injecting the content
 // script on demand (activeTab) so no permanent host access is required.
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (!isTrustedSender(sender)) return;
+
   if (message.type === "copy-article" || message.type === "copy-fulltext" || message.type === "copy-selection") {
     (async () => {
       const tab = await browser.tabs.get(message.tabId);
