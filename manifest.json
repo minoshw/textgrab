@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "TextGrab",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Extract clean article text from any webpage and copy it to clipboard for pasting into AI tools.",
   "icons": {
     "32": "icons/icon.svg",
