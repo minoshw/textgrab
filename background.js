@@ -4,6 +4,18 @@ function isRestricted(url) {
   return !url || RESTRICTED_PREFIXES.some((p) => url.startsWith(p));
 }
 
+async function injectContentScript(tabId) {
+  try {
+    await browser.scripting.executeScript({
+      target: { tabId },
+      files: ["lib/Readability.js", "content.js"]
+    });
+  } catch (e) {
+    console.error("Failed to inject content script:", e);
+    throw e;
+  }
+}
+
 browser.contextMenus.create({
   id: "copy-article-to-ai",
   title: "Copy page article to AI",
@@ -16,12 +28,17 @@ browser.contextMenus.create({
   contexts: ["selection"],
 });
 
-browser.contextMenus.onClicked.addListener((info, tab) => {
+browser.contextMenus.onClicked.addListener(async (info, tab) => {
   if (isRestricted(tab.url)) return;
-  if (info.menuItemId === "copy-article-to-ai") {
-    browser.tabs.sendMessage(tab.id, { type: "copy-article" });
-  } else if (info.menuItemId === "copy-selection-to-ai") {
-    browser.tabs.sendMessage(tab.id, { type: "copy-selection" });
+  try {
+    await injectContentScript(tab.id);
+    if (info.menuItemId === "copy-article-to-ai") {
+      browser.tabs.sendMessage(tab.id, { type: "copy-article" });
+    } else if (info.menuItemId === "copy-selection-to-ai") {
+      browser.tabs.sendMessage(tab.id, { type: "copy-selection" });
+    }
+  } catch (e) {
+    console.error("Context menu action failed:", e);
   }
 });
 

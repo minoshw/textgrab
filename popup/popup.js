@@ -8,6 +8,18 @@ const btnArticle = document.getElementById("btn-article");
 let activeTab = null;
 let statusTimeout = null;
 
+async function injectContentScript(tabId) {
+  try {
+    await browser.scripting.executeScript({
+      target: { tabId },
+      files: ["lib/Readability.js", "content.js"]
+    });
+  } catch (e) {
+    console.error("Failed to inject content script:", e);
+    throw e;
+  }
+}
+
 function setButtonStatus(btn, text, duration = 2000) {
   const original = btn.textContent;
   btn.textContent = text;
@@ -35,14 +47,7 @@ function isRestricted(url) {
 }
 
 async function canRunOnTab(tab) {
-  if (isRestricted(tab.url)) return false;
-
-  try {
-    await browser.tabs.sendMessage(tab.id, { type: "ping" }, { frameId: 0 });
-    return true;
-  } catch {
-    return false;
-  }
+  return !isRestricted(tab.url);
 }
 
 async function init() {
@@ -63,6 +68,7 @@ async function sendToContent(type, btn) {
   }
 
   try {
+    await injectContentScript(activeTab.id);
     const res = await browser.tabs.sendMessage(activeTab.id, { type });
     handleResult(res, btn);
   } catch (e) {
