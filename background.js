@@ -4,10 +4,6 @@ function isRestricted(url) {
   return !url || RESTRICTED_PREFIXES.some((p) => url.startsWith(p));
 }
 
-// Inject the content script on demand. This only ever runs on a tab after the
-// user has explicitly invoked the extension (browser action click or context
-// menu item), so activeTab grants permission for just that tab -- no
-// permanent "<all_urls>" host access is declared.
 async function ensureContentScript(tabId) {
   await browser.tabs.executeScript(tabId, { file: "lib/Readability.js", runAt: "document_idle" });
   await browser.tabs.executeScript(tabId, { file: "content.js", runAt: "document_idle" });
@@ -43,14 +39,10 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
-// Verify the message came from one of our own pages (popup or content script),
-// not another extension or an external web page.
 function isTrustedSender(sender) {
   return sender && sender.id === browser.runtime.id;
 }
 
-// Popup requests run the extraction in the active tab, injecting the content
-// script on demand (activeTab) so no permanent host access is required.
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!isTrustedSender(sender)) return;
 
