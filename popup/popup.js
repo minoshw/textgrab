@@ -34,24 +34,13 @@ function isRestricted(url) {
   return !url || RESTRICTED_PREFIXES.some((p) => url.startsWith(p));
 }
 
-async function canRunOnTab(tab) {
-  if (isRestricted(tab.url)) return false;
-
-  try {
-    await browser.tabs.sendMessage(tab.id, { type: "ping" }, { frameId: 0 });
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 async function init() {
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   activeTab = tab;
   titleEl.textContent = tab.title || "Untitled page";
   urlEl.textContent = tab.url || "";
 
-  if (!await canRunOnTab(tab)) {
+  if (isRestricted(tab.url)) {
     document.querySelectorAll("button").forEach((b) => (b.disabled = true));
   }
 }
@@ -63,7 +52,7 @@ async function sendToContent(type, btn) {
   }
 
   try {
-    const res = await browser.tabs.sendMessage(activeTab.id, { type });
+    const res = await browser.runtime.sendMessage({ type, tabId: activeTab.id });
     handleResult(res, btn);
   } catch (e) {
     setButtonStatus(btn, "❌ Failed");
