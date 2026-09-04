@@ -52,14 +52,6 @@ Firefox extension to extract clean article/blog text from any webpage and copy i
 4. The page content is copied to clipboard as markdown
 5. Paste into Claude, ChatGPT, or your favorite AI tool
 
-## Technical Details
-
-- **Manifest Version:** 2
-- **Security:** Content Security Policy enabled (script-src 'self')
-- **No Permissions Collected:** Zero telemetry
-- **Icon Sizes:** 32px and 64px (Firefox standard)
-- **Version:** 1.1.2
-
 ## How It Works
 
 1. **Content Extraction** — Uses Readability algorithm to identify main article content
