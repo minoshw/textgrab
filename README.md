@@ -46,7 +46,7 @@ TextGrab only accesses the page when you use it. It uses Firefox's **activeTab**
 1. Download and extract the ZIP file
 2. Open `about:debugging` in Firefox
 3. Click **This Firefox** → **Load Temporary Add-on**
-4. Select `manifest.json` from the extracted folder
+4. Open the `extension/` folder and select `manifest.json`
 
 ## Usage
 
@@ -67,16 +67,17 @@ TextGrab only accesses the page when you use it. It uses Firefox's **activeTab**
 
 ```
 textgrab/
-├── manifest.json          # Extension configuration
-├── background.js          # Background service script
-├── content.js            # Content script (runs on pages)
-├── popup/
-│   ├── popup.html        # Popup UI
-│   ├── popup.js          # Popup logic
-│   └── popup.css         # Popup styling
-├── icons/                # Extension icons
-├── lib/
-│   └── Readability.js    # Article extraction library
+├── extension/           # The Firefox extension (zip this folder to release)
+│   ├── manifest.json    # Extension configuration
+│   ├── background.js    # Background service script
+│   ├── content.js       # Content script (runs on pages)
+│   ├── popup/
+│   │   ├── popup.html   # Popup UI
+│   │   ├── popup.js     # Popup logic
+│   │   └── popup.css    # Popup styling
+│   ├── icons/           # Extension icons
+│   └── lib/
+│       └── Readability.js  # Article extraction library
 └── README.md
 ```
 
