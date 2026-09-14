@@ -4,14 +4,16 @@ Firefox extension to extract clean article/blog text from any webpage and copy i
 
 ## Quick Start
 
-[🚀 **Install on Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/textgrab/) • [📥 Download ZIP](https://github.com/minoshw/textgrab/archive/refs/tags/v1.2.1.zip)
+[🚀 **Install on Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/textgrab/) • [📥 Download ZIP](https://github.com/minoshw/textgrab/archive/refs/tags/v1.3.1.zip)
 
 ## Features
 
 - **Extract Article Text** — Intelligently extracts main article content from webpages
 - **Markdown Formatting** — Converts HTML to clean, readable markdown with proper formatting
-- **One-Click Copy** — Single button press to copy content to clipboard
-- **Smart Detection** — Automatically disables on unsupported pages (restricted URLs, iframes, etc.)
+- **Templates** — Format content for AI tools: Summarize, Explain Simply, Study Questions, Action Items, or Fresh Content
+- **Stats Display** — See character and word count before copying
+- **One-Click Copy** — Single button press from popup or context menu
+- **Smart Detection** — Automatically disables on unsupported pages (restricted URLs, login pages, AI tool sites)
 - **Instant Feedback** — Shows "✓ Copied to clipboard" when successful
 - **No Data Collection** — Everything runs locally in your browser. No tracking, no accounts, no servers.
 
@@ -41,7 +43,7 @@ TextGrab only accesses the page when you use it. It uses Firefox's **activeTab**
 3. Automatic updates included
 
 ### Option 2: Manual Load (Development)
-[📥 Download v1.2.1](https://github.com/minoshw/textgrab/archive/refs/tags/v1.2.1.zip)
+[📥 Download v1.3.1](https://github.com/minoshw/textgrab/archive/refs/tags/v1.3.1.zip)
 
 1. Download and extract the ZIP file
 2. Open `about:debugging` in Firefox
