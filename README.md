@@ -1,17 +1,19 @@
-# TextGrab
+<h1><img src="extension/icons/icon.svg" alt="TextGrab" style="max-height:25px;vertical-align:middle;margin-right:8px"> TextGrab</h1>
 
 Firefox extension to extract clean article/blog text from any webpage and copy it as markdown to your clipboard. Perfect for pasting into Claude, ChatGPT, or any AI tool.
 
 ## Quick Start
 
-[🚀 **Install on Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/textgrab/) • [📥 Download ZIP](https://github.com/minoshw/textgrab/archive/refs/tags/v1.2.1.zip)
+[🚀 **Install on Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/textgrab/) • [📥 Download ZIP](https://github.com/minoshw/textgrab/archive/refs/tags/v1.3.1.zip)
 
 ## Features
 
 - **Extract Article Text** — Intelligently extracts main article content from webpages
 - **Markdown Formatting** — Converts HTML to clean, readable markdown with proper formatting
-- **One-Click Copy** — Single button press to copy content to clipboard
-- **Smart Detection** — Automatically disables on unsupported pages (restricted URLs, iframes, etc.)
+- **Templates** — Format content for AI tools: Summarize, Explain Simply, Study Questions, Action Items, or Fresh Content
+- **Stats Display** — See character and word count before copying
+- **One-Click Copy** — Single button press from popup or context menu
+- **Smart Detection** — Automatically disables on unsupported pages (restricted URLs, login pages, AI tool sites)
 - **Instant Feedback** — Shows "✓ Copied to clipboard" when successful
 - **No Data Collection** — Everything runs locally in your browser. No tracking, no accounts, no servers.
 
@@ -41,7 +43,7 @@ TextGrab only accesses the page when you use it. It uses Firefox's **activeTab**
 3. Automatic updates included
 
 ### Option 2: Manual Load (Development)
-[📥 Download v1.2.1](https://github.com/minoshw/textgrab/archive/refs/tags/v1.2.1.zip)
+[📥 Download v1.3.1](https://github.com/minoshw/textgrab/archive/refs/tags/v1.3.1.zip)
 
 1. Download and extract the ZIP file
 2. Open `about:debugging` in Firefox
@@ -50,11 +52,37 @@ TextGrab only accesses the page when you use it. It uses Firefox's **activeTab**
 
 ## Usage
 
+### Basic Copy
+
 1. Visit any article, blog post, or webpage
 2. Click the TextGrab icon in your toolbar
-3. Click **Copy Content** button
-4. The page content is copied to clipboard as markdown
-5. Paste into Claude, ChatGPT, or your favorite AI tool
+3. Select a template (optional) from the dropdown
+4. Click **Copy Page Content** button
+5. The content is copied to clipboard with your chosen template prefix
+6. Paste into Claude, ChatGPT, or your AI tool
+
+### Using Templates
+
+TextGrab includes built-in templates to format content for AI tools:
+
+- **Default** — Copy content as-is, no wrapping
+- **Summarize** — Prefix: "Summarize the following article in concise bullet points:"
+- **Explain Simply** — Prefix: "Explain the following article in simple terms, as if I were a beginner:"
+- **Study Questions** — Prefix: "Read the following article and generate 10 study questions with answers:"
+- **Action Items** — Prefix: "Extract all action items and tasks from the following article as a checklist:"
+- **Fresh Content** — For latest/uncrawled articles: "Here's the current version of this article content since IF you may not have access to the latest:"
+
+### Context Menu
+
+Right-click on any page and select:
+- **Copy Page Content** — Extract and copy full article
+- **Copy Selection** — Copy selected text
+
+Both options respect your selected template.
+
+### Stats Display
+
+The popup shows character and word count of the current page, helping you gauge content size before copying.
 
 ## How It Works
 
@@ -91,3 +119,4 @@ textgrab/
 
 - Built with [Readability.js](https://github.com/mozilla/readability) for intelligent article extraction
 - Firefox Readability algorithm for content identification
+- Icon: [Chunk 16px - Text](https://www.svgrepo.com/svg/535686/text) by Noah Jacobus (Public Domain)
