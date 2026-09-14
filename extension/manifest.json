@@ -1,18 +1,14 @@
 {
   "manifest_version": 2,
   "name": "TextGrab",
-  "version": "1.2.1",
-  "description": "Extract clean article text from any webpage and copy it to clipboard for pasting into AI tools.",
+  "version": "1.3.1",
+  "description": "Copy clean article text to clipboard, ready for ChatGPT, Claude, or any AI tool.",
   "icons": {
     "32": "icons/icon.svg",
     "64": "icons/icon.svg"
   },
   "content_security_policy": "script-src 'self'; object-src 'none'",
-  "permissions": [
-    "activeTab",
-    "clipboardWrite",
-    "contextMenus"
-  ],
+  "permissions": ["activeTab", "clipboardWrite", "contextMenus", "storage"],
   "browser_specific_settings": {
     "gecko": {
       "data_collection_permissions": {

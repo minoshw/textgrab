@@ -1,22 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>TextGrab</title>
-  <link rel="stylesheet" href="popup.css" />
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1 id="page-title">Loading...</h1>
-      <p class="subtitle" id="page-url"></p>
-    </div>
+    <head>
+        <meta charset="utf-8" />
+        <title>TextGrab</title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 id="page-title">Loading...</h1>
+                <p class="subtitle" id="page-url"></p>
+                <p class="subtitle" id="page-stats"></p>
+            </div>
 
-    <button id="btn-article" class="btn-main">Copy Content</button>
+            <div class="template-wrapper">
+                <p class="template-hint">
+                    Pick a template to wrap your content with context.
+                    <span class="template-hint-example">E.g., summarize, explain, or extract action items.</span>
+                </p>
+                <div class="dropdown" id="template-dropdown">
+                    <button
+                        type="button"
+                        class="dropdown-toggle"
+                        id="template-toggle"
+                    >
+                        <span id="template-label">Default</span>
+                        <svg
+                            class="dropdown-chevron"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="10"
+                            height="6"
+                            viewBox="0 0 10 6"
+                        >
+                            <path d="M0 0l5 6 5-6z" fill="currentColor" />
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="template-menu" hidden>
+                        <button
+                            type="button"
+                            class="dropdown-item"
+                            data-value="none"
+                        >
+                            Default
+                            <span class="dropdown-item-desc"
+                                >— No template</span
+                            >
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button
+                            type="button"
+                            class="dropdown-item"
+                            data-value="summarize"
+                        >
+                            Summarize
+                            <span class="dropdown-item-desc"
+                                >— Concise bullet points</span
+                            >
+                        </button>
+                        <button
+                            type="button"
+                            class="dropdown-item"
+                            data-value="explain"
+                        >
+                            Explain simply
+                            <span class="dropdown-item-desc"
+                                >— Beginner-friendly</span
+                            >
+                        </button>
+                        <button
+                            type="button"
+                            class="dropdown-item"
+                            data-value="questions"
+                        >
+                            Study questions
+                            <span class="dropdown-item-desc"
+                                >— 10 Q&A pairs</span
+                            >
+                        </button>
+                        <button
+                            type="button"
+                            class="dropdown-item"
+                            data-value="todolist"
+                        >
+                            Action items
+                            <span class="dropdown-item-desc"
+                                >— Checklist format</span
+                            >
+                        </button>
+                        <button
+                            type="button"
+                            class="dropdown-item"
+                            data-value="article"
+                        >
+                            Fresh content
+                            <span class="dropdown-item-desc"
+                                >— Latest clean version</span
+                            >
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    <textarea id="manual-copy" class="manual-copy" placeholder="Text will appear here..."></textarea>
-  </div>
+            <button id="btn-article" class="btn-main">Loading...</button>
 
-  <script src="popup.js"></script>
-</body>
+            <textarea
+                id="manual-copy"
+                class="manual-copy"
+                placeholder="Text will appear here..."
+            ></textarea>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
 </html>

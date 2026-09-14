@@ -219,24 +219,42 @@ async function writeToClipboard(text) {
   }
 }
 
+function countStats(text) {
+  const words = text && text.trim() ? text.trim().split(/\s+/).length : 0;
+  return { chars: text.length, words };
+}
+
+function applyTemplate(text, message) {
+  const prefix = message.prefix || "";
+  const suffix = message.suffix || "";
+  if (!prefix && !suffix) return text;
+  return `${prefix}${text}${suffix}`;
+}
+
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
-    if (message.type === "copy-article") {
+    if (message.type === "get-stats") {
+      const { text } = extractArticle();
+      sendResponse({ stats: countStats(text) });
+    } else if (message.type === "copy-article") {
       const { text, usedFallback } = extractArticle();
-      const copied = await writeToClipboard(text);
-      sendResponse({ ok: copied, text, usedFallback, noArticle: !text || text.trim().length === 0 });
+      const out = applyTemplate(text, message);
+      const copied = await writeToClipboard(out);
+      sendResponse({ ok: copied, text: out, usedFallback, noArticle: !text || text.trim().length === 0, stats: countStats(out) });
     } else if (message.type === "copy-fulltext") {
       const text = extractFullPage();
-      const copied = await writeToClipboard(text);
-      sendResponse({ ok: copied, text });
+      const out = applyTemplate(text, message);
+      const copied = await writeToClipboard(out);
+      sendResponse({ ok: copied, text: out, stats: countStats(out) });
     } else if (message.type === "copy-selection") {
       const text = extractSelection();
       if (!text) {
         sendResponse({ ok: false, text: "", noSelection: true });
         return;
       }
-      const copied = await writeToClipboard(text);
-      sendResponse({ ok: copied, text });
+      const out = applyTemplate(text, message);
+      const copied = await writeToClipboard(out);
+      sendResponse({ ok: copied, text: out, stats: countStats(out) });
     } else if (message.type === "legacy-copy") {
       const ta = document.createElement("textarea");
       ta.value = message.text;
